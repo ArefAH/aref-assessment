@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Middleware\RequestsNum;
+
+Route::middleware(RequestsNum::class)->group(function () {
 
 Route::prefix("/users")->group(function() {
     Route::get("/", [UserController::class, "index"]);
@@ -20,3 +23,5 @@ Route::prefix("/projects")->group(function() {
     Route::put("/{id}", [ProjectController::class, "update"]);
     Route::delete("/{id}", [ProjectController::class, "destroy"]);
   });
+  
+});
