@@ -11,7 +11,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = User::all();
+        $projects = Project::all();
 
         return response()->json([
             "projects" => $projects
@@ -23,7 +23,17 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required'
+        ]);
+
+        $project = Project::create($request->all());
+
+        return response()->json([
+            "new_project" => $project
+        ]);
     }
 
     /**
