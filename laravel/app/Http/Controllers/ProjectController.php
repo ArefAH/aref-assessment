@@ -70,6 +70,10 @@ class ProjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $project = Project::findOrFail($id)->delete();
+
+        return response()->json([
+            "deleted_project" => $project
+        ]);
     }
 }
