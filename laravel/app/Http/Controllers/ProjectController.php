@@ -11,7 +11,11 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = User::all();
+
+        return response()->json([
+            "projects" => $projects
+        ]);
     }
 
     /**
