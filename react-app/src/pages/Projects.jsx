@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import Project from "../components/Project";
-import { ProjectsProvider, ProjectsContext } from "../context/projectsContext";
+import {ProjectsContext } from "../context/projectsContext";
 
 const Projects = () => {
   const { projects, fetchProjects, addProject, deleteProject } = useContext(ProjectsContext);
@@ -8,7 +8,7 @@ const Projects = () => {
   useEffect(() => {
     fetchProjects();
   }, []);
-  
+
   return (
     <div className="projects-container">
       {projects.map((p) => (
