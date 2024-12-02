@@ -53,7 +53,16 @@ class ProjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $project = Project::findOrFail($id);
+        $project->update([
+            "name" => $request->name,
+            "email" => $request->email,
+            "password" => $request->password,
+        ]);
+
+        return response()->json([
+            "updated_project" => $project
+        ]);
     }
 
     /**
